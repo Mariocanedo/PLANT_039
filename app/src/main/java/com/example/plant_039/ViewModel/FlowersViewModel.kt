@@ -29,11 +29,15 @@ class FlowersViewModel(application: Application) : AndroidViewModel(application)
     fun getFlowersList(): LiveData<List<FlowerList>> = repository.flowerListLiveData
 
 
+
+    // es cuando selecciono una
     fun getFlowersDetailsByIdFromInternet(id: Int) = viewModelScope.launch {
         idSelected = id
         repository.fetchFlowerDetails(id)
 
     }
 
+
+    // obtener el detalle de una flor
     fun getFlowersDetail(): LiveData<FlowerDetails> = repository.getFlowersDetailsById(idSelected)
 }

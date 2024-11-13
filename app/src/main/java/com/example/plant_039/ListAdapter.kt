@@ -15,8 +15,13 @@ class ListsAdapter : RecyclerView.Adapter<ListsAdapter.viewholder>() {
 
     private var listFlowers = listOf<FlowerList>()
     private val selectedFlower = MutableLiveData<FlowerList>()
+
+    // para seleccionar el detalle de una flor
     fun selectedFlower(): LiveData<FlowerList> = selectedFlower
 
+
+
+    // xml diseño del RV
     inner class viewholder(private val binding: FlowerlistBinding) :
         RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
@@ -42,13 +47,17 @@ class ListsAdapter : RecyclerView.Adapter<ListsAdapter.viewholder>() {
         notifyDataSetChanged()
     }
 
-
+// INFLO LA VISTA
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewholder {
         return viewholder(FlowerlistBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
+
+    // LLEVA LA CUENTA DE CUANTOS ELEMENTOS TENEMOS EN EL RV
     override fun getItemCount(): Int = listFlowers.size
 
+
+    // POSICIONA LOS ELEMENTOS
     override fun onBindViewHolder(holder: viewholder, position: Int) {
         holder.bind(listFlowers[position])
     }
